@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Karla:ital,wght@0,200..800;1,200..800&family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/* start variables */
+:root {
+}
+/* End variables */
+/* start global rules  */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+ul {
+  list-style: none;
+}
+.container {
+  padding: 100px 15px 0px 15px ;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+}
+/* small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* start head  */
+/* إعدادات عامة */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Cairo', sans-serif !important;
+  background-color: #f8f8f8;
+  color: #333;
+  direction: rtl;
+  line-height: 1.6;
+}
+
+/* header  */
+.icon{
+  color: #366fb5;
+}
+
+
+/* content  */
+.page-title{
+  text-align: center;
+  color: #366fb5;
+  position: relative;
+  z-index: 1;
+  margin: 20px 0px;
+
+}
+
+.page-title::before{
+  content: '';
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 0.8em;
+  background-color: rgba(121, 180, 220, 0.35);
+  z-index: -1;
+}
+.page-para{
+  font-size: 17px;
+  font-weight: 200;
+  color: #737373;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+}
+.page-input{
+  border: 1px solid #dfdfdf;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 300px;
+  font-family: 'Cairo', sans-serif;
+  color: #737373;
+  margin-bottom: 1rem;
+}
+.personal-info{
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  max-width: 360px;
+  text-align: center;
+  margin: auto;
+}
+
+.personal-item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.3rem;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+.personal-label{
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.button {
+    background-color: #366fb5 !important;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: white;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #366fb5;
+  position: relative;
+  margin-top: 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+.image-1{
+  height: 50px;
+  width: auto;
+  margin: 0 1px;
+  filter: brightness(0) invert(1);
+}
+.image-2{
+  height: 80px;
+  width: auto;
+  margin: 0 1px;
+  filter: brightness(0) invert(1);
+}
+.vertical-line {
+  height: 50px;
+  width: 1px;
+  background-color: white;
+  border-radius: 1px;
+  margin: 0 10px;
+}
+.footer-para{
+  margin: 10px 0px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.footer-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  gap: 5rem;
+  flex-wrap: nowrap;
+  width: auto;
+  flex-shrink: 1;
+}
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.social-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.errorMessage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(223, 43, 43, 0.726);
+  padding: 10px 40px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+
+

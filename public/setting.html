@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>seha</title>
+  <link rel="icon" href="/images/tr.png" type="image/png"> 
+  <link rel="icon" href="/images/tr.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/social_links.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="./images/se.png" alt="logo" height="40px"></a>
+        <button class="navbar-toggler" type="button" style="border: none; outline: none; box-shadow: none;" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="icon fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav text-center">
+            <a class="nav-link active" aria-current="page" href="#">الخدمات</a>
+            <a class="nav-link" href="#">الاستعلامات</a>
+            <a class="nav-link" href="#">انشاء حساب</a>
+            <a class="nav-link" href="#">تسجيل دخول</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    <h1 class="h1">
+      <span class="page-title">تعديل البيانات</span>
+    </h1>
+    <form id="editForm">
+      <div class="input-container">
+        <input type="text" id="editServicecode" class="page-input" placeholder="رقم الخدمة">
+        <input type="text" id="editIdNumber" class="page-input" placeholder="رقم الهوية / الإقامة">
+      </div>
+      <div class="personal-info">
+        <div class="personal-item">
+          <div class="input-group">
+            <span class="personal-label">الاسم:</span>
+            <input type="text" id="editName" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">تاريخ الإصدار:</span>
+            <input type="date" id="editIssueDate" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">تبدأ من:</span>
+            <input type="date" id="editStartDate" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">وحتى:</span>
+            <input type="date" id="editEndDate" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">المدة:</span>
+            <input type="number" id="editDuration" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">اسم الطبيب:</span>
+            <input type="text" id="editDoctor" class="page-input">
+          </div>
+          <div class="input-group">
+            <span class="personal-label">المسمى الوظيفي:</span>
+            <input type="text" id="editJobTitle" class="page-input">
+          </div>
+          <div class="button-container">
+            <button type="button" onclick="saveChanges()" class="btn btn-primary button">حفظ التغييرات</button>
+            <button type="button" onclick="saveToJSON()" class="btn btn-success button">حفظ إلى جديد</button>
+            <a href="data-display.html" class="btn btn-secondary button">العودة</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Start Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <img src="./images/lean.png" alt="Lean logo" class="image-1">
+      <div class="vertical-line"></div>
+      <img src="./images/MOF.png" alt="MOF logo" class="image-2">
+    </div>
+    <p class="footer-para">منصة صحة معتمدة من قبل وزارة الصحة © 2025</p>
+    <div class="footer-links">
+      <a href="https://www.seha.sa/files/T_Cs_v3.pdf" class="footer-link" target="_blank" rel="noopener noreferrer">سياسة الخصوصية وشروط الإستخدام</a>
+      <span>|</span>
+      <a href="https://seha.sa/Content/LandingPages/UserManual.pdf" class="footer-link" target="_blank" rel="noopener noreferrer">دليل الاستخدام</a>
+    </div>
+    <div class="footer-social">
+      <div class="social-icons">
+        <a href="https://wa.me/+966545909461" target="_blank" rel="noopener noreferrer">
+          <img src="./images/you.png" alt="WhatsApp" class="social-icon">
+        </a>
+        <a href="https://twitter.com/seha_services" target="_blank" rel="noopener noreferrer">
+          <img src="./images/T.png" alt="Twitter" class="social-icon">
+        </a>
+        <a href="https://www.youtube.com/channel/UCb9ZrS2YcriYqIPIHNp9wcQ" target="_blank" rel="noopener noreferrer">
+          <img src="./images/wh.png" alt="YouTube" class="social-icon">
+        </a>
+      </div>
+      <div class="contact-info">
+        <span>920002005</span>
+        <span>|</span>
+        <span>support@seha.sa</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // جلب بيانات المستخدمين من الخادم وتعبئة الحقول بناءً على المستخدم الحالي
+      fetch('/api/users')
+        .then(response => response.json())
+        .then(usersData => {
+          const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          if (currentUser) {
+            document.getElementById('editServicecode').value = currentUser.servicecode;
+            document.getElementById('editIdNumber').value = currentUser.idNumber;
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editIssueDate').value = currentUser.issueDate;
+            document.getElementById('editStartDate').value = currentUser.startDate;
+            document.getElementById('editEndDate').value = currentUser.endDate;
+            document.getElementById('editDuration').value = currentUser.duration;
+            document.getElementById('editDoctor').value = currentUser.doctor;
+            document.getElementById('editJobTitle').value = currentUser.jobTitle;
+          }
+        })
+        .catch(err => console.error(err));
+    });
+
+    function saveChanges() {
+      const updatedUser = {
+        servicecode: document.getElementById('editServicecode').value,
+        idNumber: document.getElementById('editIdNumber').value,
+        name: document.getElementById('editName').value,
+        issueDate: document.getElementById('editIssueDate').value,
+        startDate: document.getElementById('editStartDate').value,
+        endDate: document.getElementById('editEndDate').value,
+        duration: document.getElementById('editDuration').value,
+        doctor: document.getElementById('editDoctor').value,
+        jobTitle: document.getElementById('editJobTitle').value
+      };
+
+      // تحقق من أن الحقول ليست فارغة
+      if (!updatedUser.servicecode || !updatedUser.idNumber || !updatedUser.name) {
+        alert('الرجاء تعبئة جميع الحقول المطلوبة.');
+        return;
+      }
+
+      fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedUser)
+      })
+      .then(response => response.text())
+      .then(message => {
+        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+        window.location.href = 'data-display.html';
+      })
+      .catch(err => console.error(err));
+    }
+
+    function saveToJSON() {
+      const updatedUser = {
+        servicecode: document.getElementById('editServicecode').value,
+        idNumber: document.getElementById('editIdNumber').value,
+        name: document.getElementById('editName').value,
+        issueDate: document.getElementById('editIssueDate').value,
+        startDate: document.getElementById('editStartDate').value,
+        endDate: document.getElementById('editEndDate').value,
+        duration: document.getElementById('editDuration').value,
+        doctor: document.getElementById('editDoctor').value,
+        jobTitle: document.getElementById('editJobTitle').value
+      };
+
+      // تحقق من أن الحقول ليست فارغة
+      if (!updatedUser.servicecode || !updatedUser.idNumber || !updatedUser.name) {
+        alert('الرجاء تعبئة جميع الحقول المطلوبة.');
+        return;
+      }
+
+      fetch('/api/saveToJSON', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedUser)
+      })
+      .then(response => response.text())
+      .then(message => {
+        alert(message);
+      })
+      .catch(err => {
+        console.error('حدث خطأ:', err);
+        alert('حدث خطأ أثناء حفظ البيانات.');
+      });
+    }
+  </script>
+</body>
+</html>

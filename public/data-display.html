@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>seha</title>
+  <link rel="icon" href="/images/tr.png" type="image/png"> 
+  <link rel="icon" href="/images/tr.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/social_links.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="./images/se.png" alt="logo" height="40px"></a>
+        <button class="navbar-toggler" type="button" style="border: none; outline: none; box-shadow: none;" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="icon fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav text-center">
+            <a class="nav-link active" aria-current="page" href="#">الخدمات</a>
+            <a class="nav-link" href="#">الاستعلامات</a>
+            <a class="nav-link" href="#">انشاء حساب</a>
+            <a class="nav-link" href="#">تسجيل دخول</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    <h1 class="h1">
+      <span class="page-title">الإجازات المرضية</span>
+    </h1>
+    <p class="page-para">خدمة الاستعلام عن الإجازات المرضية تتيح لك الاستعلام عن حالة طلبك للإجازة ويمكنك طباعتها عن طريق تطبيق صحتي</p>
+    <div id="displayMode">
+      <div class="input-container">
+        <input type="text" id="servicecode" class="page-input" readonly>
+        <input type="text" id="idNumber" class="page-input" readonly>
+      </div>
+      <div class="personal-info">
+        <div class="personal-item">
+          <span class="personal-label">الاسم:</span><span id="nameDisplay"></span><br>
+          <span class="personal-label">تاريخ إصدار تقرير الإجازة:</span><span id="issueDateDisplay"></span><br>
+          <span class="personal-label">تبدأ من:</span><span id="startDateDisplay"></span><br>
+          <span class="personal-label">وحتى:</span><span id="endDateDisplay"></span><br>
+          <span class="personal-label">المدة بالايام:</span><span id="durationDisplay"></span><br>
+          <span class="personal-label">اسم الطبيب:</span><span id="doctorDisplay"></span><br>
+          <span class="personal-label">المسمى الوظيفي:</span><span id="jobTitleDisplay"></span>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <a href="index.html" class="btn btn-primary button">استعلام جديد</a>
+      <a href="index.html" class="btn btn-primary button"> الرجوع الي الاستعلامات</a>
+    </div>
+
+
+  </div>
+
+  <!-- Start Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <img src="./images/lean.png" alt="Lean logo" class="image-1">
+      <div class="vertical-line"></div>
+      <img src="./images/MOF.png" alt="MOF logo" class="image-2">
+    </div>
+    <p class="footer-para">منصة صحة معتمدة من قبل وزارة الصحة © 2025</p>
+    <div class="footer-links">
+      <a href="https://www.seha.sa/files/T_Cs_v3.pdf" class="footer-link" target="_blank" rel="noopener noreferrer">سياسة الخصوصية وشروط الإستخدام</a>
+      <span>|</span>
+      <a href="https://seha.sa/Content/LandingPages/UserManual.pdf" class="footer-link" target="_blank" rel="noopener noreferrer">دليل الاستخدام</a>
+    </div>
+    <div class="footer-social">
+      <div class="social-icons">
+        <a href="https://wa.me/+966545909461" target="_blank" rel="noopener noreferrer">
+          <img src="./images/you.png" alt="WhatsApp" class="social-icon">
+        </a>
+        <a href="https://twitter.com/seha_services" target="_blank" rel="noopener noreferrer">
+          <img src="./images/T.png" alt="Twitter" class="social-icon">
+        </a>
+        <a href="https://www.youtube.com/channel/UCb9ZrS2YcriYqIPIHNp9wcQ" target="_blank" rel="noopener noreferrer">
+          <img src="./images/wh.png" alt="YouTube" class="social-icon">
+        </a>
+      </div>
+      <div class="contact-info">
+        <span>920002005</span>
+        <span>|</span>
+        <span>support@seha.sa</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="index.js"></script>
+  <script>
+    // عند تحميل الصفحة، يتم عرض بيانات المستخدم الحالي المخزنة في localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (currentUser) {
+        document.getElementById('servicecode').value = currentUser.servicecode;
+        document.getElementById('idNumber').value = currentUser.idNumber;
+        document.getElementById('nameDisplay').textContent = currentUser.name;
+        document.getElementById('issueDateDisplay').textContent = currentUser.issueDate;
+        document.getElementById('startDateDisplay').textContent = currentUser.startDate;
+        document.getElementById('endDateDisplay').textContent = currentUser.endDate;
+        document.getElementById('durationDisplay').textContent = currentUser.duration;
+        document.getElementById('doctorDisplay').textContent = currentUser.doctor;
+        document.getElementById('jobTitleDisplay').textContent = currentUser.jobTitle;
+      } else {
+        alert('لم يتم العثور على بيانات المستخدم. يرجى تسجيل الدخول مرة أخرى.');
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
