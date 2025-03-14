@@ -98,21 +98,39 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script src="index.js"></script>
   <script>
-    // عند تحميل الصفحة، يتم عرض بيانات المستخدم الحالي المخزنة في localStorage
-    document.addEventListener('DOMContentLoaded', () => {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      if (currentUser) {
-        document.getElementById('servicecode').value = currentUser.servicecode;
-        document.getElementById('idNumber').value = currentUser.idNumber;
-        document.getElementById('nameDisplay').textContent = currentUser.name;
-        document.getElementById('issueDateDisplay').textContent = currentUser.issueDate;
-        document.getElementById('startDateDisplay').textContent = currentUser.startDate;
-        document.getElementById('endDateDisplay').textContent = currentUser.endDate;
-        document.getElementById('durationDisplay').textContent = currentUser.duration;
-        document.getElementById('doctorDisplay').textContent = currentUser.doctor;
-        document.getElementById('jobTitleDisplay').textContent = currentUser.jobTitle;
+    
+    // عند تحميل الصفحة، يتم جلب بيانات المستخدم الحالي
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const servicecode = urlParams.get('servicecode');
+      const idNumber = urlParams.get('idNumber');
+
+      if (servicecode && idNumber) {
+        try {
+          const response = await fetch('/api/users');
+          const data = await response.json();
+          const user = data.users.find(u => u.servicecode === servicecode && u.idNumber === idNumber);
+
+          if (user) {
+            document.getElementById('servicecode').value = user.servicecode;
+            document.getElementById('idNumber').value = user.idNumber;
+            document.getElementById('nameDisplay').textContent = user.name;
+            document.getElementById('issueDateDisplay').textContent = user.issueDate;
+            document.getElementById('startDateDisplay').textContent = user.startDate;
+            document.getElementById('endDateDisplay').textContent = user.endDate;
+            document.getElementById('durationDisplay').textContent = user.duration;
+            document.getElementById('doctorDisplay').textContent = user.doctor;
+            document.getElementById('jobTitleDisplay').textContent = user.jobTitle;
+          } else {
+            alert('لم يتم العثور على بيانات المستخدم.');
+            window.location.href = 'index.html';
+          }
+        } catch (err) {
+          console.error('حدث خطأ أثناء جلب البيانات:', err);
+          alert('حدث خطأ أثناء جلب البيانات.');
+        }
       } else {
-        alert('لم يتم العثور على بيانات المستخدم. يرجى تسجيل الدخول مرة أخرى.');
+        alert('الرجاء تسجيل الدخول أولاً.');
         window.location.href = 'index.html';
       }
     });

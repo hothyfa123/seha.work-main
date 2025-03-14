@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عرض جميع البيانات</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .delete-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .delete-btn:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center my-4">عرض جميع البيانات</h1>
+    <table id="dataTable" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>رقم الخدمة</th>
+          <th>رقم الهوية/الإقامة</th>
+          <th>الاسم</th>
+          <th>تاريخ الإصدار</th>
+          <th>تبدأ من</th>
+          <th>وحتى</th>
+          <th>المدة (أيام)</th>
+          <th>اسم الطبيب</th>
+          <th>المسمى الوظيفي</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- البيانات سيتم إضافتها هنا بواسطة JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // دالة لجلب وعرض جميع البيانات
+    async function fetchAllData() {
+      try {
+        const response = await fetch('/api/users');
+        const data = await response.json();
+        const users = data.users;
+
+        const tableBody = document.querySelector('#dataTable tbody');
+        tableBody.innerHTML = ''; // مسح المحتوى القديم
+
+        users.forEach(user => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${user.servicecode}</td>
+            <td>${user.idNumber}</td>
+            <td>${user.name}</td>
+            <td>${user.issueDate}</td>
+            <td>${user.startDate}</td>
+            <td>${user.endDate}</td>
+            <td>${user.duration}</td>
+            <td>${user.doctor}</td>
+            <td>${user.jobTitle}</td>
+            <td>
+              <button class="delete-btn" onclick="deleteUser('${user.servicecode}', '${user.idNumber}')">حذف</button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (err) {
+        console.error('حدث خطأ أثناء جلب البيانات:', err);
+        alert('حدث خطأ أثناء جلب البيانات.');
+      }
+    }
+
+    // دالة لحذف مستخدم
+    async function deleteUser(servicecode, idNumber) {
+      if (confirm('هل أنت متأكد من حذف هذا المستخدم؟')) {
+        try {
+          const response = await fetch(`/api/users/${servicecode}/${idNumber}`, {
+            method: 'DELETE'
+          });
+
+          if (response.ok) {
+            alert('تم حذف المستخدم بنجاح.');
+            fetchAllData(); // إعادة تحميل البيانات بعد الحذف
+          } else {
+            alert('حدث خطأ أثناء حذف المستخدم.');
+          }
+        } catch (err) {
+          console.error('حدث خطأ أثناء حذف المستخدم:', err);
+          alert('حدث خطأ أثناء حذف المستخدم.');
+        }
+      }
+    }
+
+    // جلب البيانات عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', fetchAllData);
+  </script>
+</body>
+</html>
